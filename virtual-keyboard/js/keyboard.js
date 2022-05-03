@@ -2,10 +2,10 @@ import language from '../layouts.js';
 
 export const keyLayout = [
   ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'],
-  ['Tab', 'LetterQ', 'LetterW', 'LetterE', 'LetterR', 'LetterT', 'LetterY', 'LetterU', 'LetterI', 'LetterO', 'LetterP', 'OpenBracket', 'CloseBracket', 'Backslash', 'Delete'],
-  ['CapsLock', 'LetterA', 'LetterS', 'LetterD', 'LetterF', 'LetterG', 'LetterH', 'LetterJ', 'LetterK', 'LetterL', 'Semicolon', 'Quote', 'Enter'],
-  ['LeftShift', 'LetterZ', 'LetterX', 'LetterC', 'LetterV', 'LetterB', 'LetterN', 'LetterM', 'Comma', 'Period', 'ForwardSlash', 'ArrowUp', 'RightShift'],
-  ['LeftCtrl', 'Win', 'LeftAlt', 'Space', 'RightAlt', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'RightCtrl']
+  ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete'],
+  ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'],
+  ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'],
+  ['ControlLeft', 'Win', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight']
 ];
 
 export default class Keyboard {
@@ -88,10 +88,10 @@ export default class Keyboard {
               case 'CapsLock':
                 keyElement.classList.add('keyboard-key-wide');
                 break;
-              case 'LeftShift':
+              case 'ShiftLeft':
                 keyElement.classList.add('keyboard-key-shift');
                 break;
-              case 'RightShift':
+              case 'ShiftRight':
                 keyElement.classList.add('keyboard-key-shift');
                 break;
               case 'Enter':

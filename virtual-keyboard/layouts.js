@@ -1,647 +1,647 @@
 const en = [
   {
-    key: '`',
+    lowercase: '`',
     shiftKey: '~',
     code: 'Backquote'
   },
   {
-    key: '1',
+    lowercase: '1',
     shiftKey: '!',
     code: 'Digit1'
   },
   {
-    key: '2',
+    lowercase: '2',
     shiftKey: '@',
     code: 'Digit2'
   },
   {
-    key: '3',
+    lowercase: '3',
     shiftKey: '#',
     code: 'Digit3'
   },
   {
-    key: '4',
+    lowercase: '4',
     shiftKey: '$',
     code: 'Digit4'
   },
   {
-    key: '5',
+    lowercase: '5',
     shiftKey: '%',
     code: 'Digit5'
   },
   {
-    key: '6',
+    lowercase: '6',
     shiftKey: '^',
     code: 'Digit6'
   },
   {
-    key: '7',
+    lowercase: '7',
     shiftKey: '&',
     code: 'Digit7'
   },
   {
-    key: '8',
+    lowercase: '8',
     shiftKey: '*',
     code: 'Digit8'
   },
   {
-    key: '9',
+    lowercase: '9',
     shiftKey: '(',
     code: 'Digit9'
   },
   {
-    key: '0',
+    lowercase: '0',
     shiftKey: ')',
     code: 'Digit0'
   },
   {
-    key: '-',
+    lowercase: '-',
     shiftKey: '_',
     code: 'Minus'
   },
   {
-    key: '=',
+    lowercase: '=',
     shiftKey: '+',
     code: 'Equal'
   },
   {
-    key: 'Backspace',
+    lowercase: 'Backspace',
     shiftKey: null,
     code: 'Backspace'
   },
   {
-    key: 'Tab',
+    lowercase: 'Tab',
     shiftKey: null,
     code: 'Tab'
   },
   {
-    key: 'q',
+    lowercase: 'q',
     shiftKey: 'Q',
-    code: 'LetterQ'
+    code: 'KeyQ'
   },
   {
-    key: 'w',
+    lowercase: 'w',
     shiftKey: 'W',
-    code: 'LetterW'
+    code: 'KeyW'
   },
   {
-    key: 'e',
+    lowercase: 'e',
     shiftKey: 'E',
-    code: 'LetterE'
+    code: 'KeyE'
   },
   {
-    key: 'r',
+    lowercase: 'r',
     shiftKey: 'R',
-    code: 'LetterR'
+    code: 'KeyR'
   },
   {
-    key: 't',
+    lowercase: 't',
     shiftKey: 'T',
-    code: 'LetterT'
+    code: 'KeyT'
   },
   {
-    key: 'y',
+    lowercase: 'y',
     shiftKey: 'Y',
-    code: 'LetterY'
+    code: 'KeyY'
   },
   {
-    key: 'u',
+    lowercase: 'u',
     shiftKey: 'U',
-    code: 'LetterU'
+    code: 'KeyU'
   },
   {
-    key: 'i',
+    lowercase: 'i',
     shiftKey: 'I',
-    code: 'LetterI'
+    code: 'KeyI'
   },
   {
-    key: 'o',
+    lowercase: 'o',
     shiftKey: 'O',
-    code: 'LetterO'
+    code: 'KeyO'
   },
   {
-    key: 'p',
+    lowercase: 'p',
     shiftKey: 'P',
-    code: 'LetterP'
+    code: 'KeyP'
   },
   {
-    key: '[',
+    lowercase: '[',
     shiftKey: '{',
-    code: 'OpenBracket'
+    code: 'BracketLeft'
   },
   {
-    key: ']',
+    lowercase: ']',
     shiftKey: '}',
-    code: 'CloseBracket'
+    code: 'BracketRight'
   },
   {
-    key: '\\',
+    lowercase: '\\',
     shiftKey: '|',
     code: 'Backslash'
   },
   {
-    key: 'Del',
+    lowercase: 'Del',
     shiftKey: null,
     code: 'Delete'
   },
   {
-    key: 'Caps Lock',
+    lowercase: 'Caps Lock',
     shiftKey: null,
     code: 'CapsLock'
   },
   {
-    key: 'a',
+    lowercase: 'a',
     shiftKey: 'A',
-    code: 'LetterA'
+    code: 'KeyA'
   },
   {
-    key: 's',
+    lowercase: 's',
     shiftKey: 'S',
-    code: 'LetterS'
+    code: 'KeyS'
   },
   {
-    key: 'd',
+    lowercase: 'd',
     shiftKey: 'D',
-    code: 'LetterD'
+    code: 'KeyD'
   },
   {
-    key: 'f',
+    lowercase: 'f',
     shiftKey: 'F',
-    code: 'LetterF'
+    code: 'KeyF'
   },
   {
-    key: 'g',
+    lowercase: 'g',
     shiftKey: 'G',
-    code: 'LetterG'
+    code: 'KeyG'
   },
   {
-    key: 'h',
+    lowercase: 'h',
     shiftKey: 'H',
-    code: 'LetterH'
+    code: 'KeyH'
   },
   {
-    key: 'j',
+    lowercase: 'j',
     shiftKey: 'J',
-    code: 'LetterJ'
+    code: 'KeyJ'
   },
   {
-    key: 'k',
+    lowercase: 'k',
     shiftKey: 'K',
-    code: 'LetterK'
+    code: 'KeyK'
   },
   {
-    key: 'l',
+    lowercase: 'l',
     shiftKey: 'L',
-    code: 'LetterL'
+    code: 'KeyL'
   },
   {
-    key: ';',
+    lowercase: ';',
     shiftKey: ':',
     code: 'Semicolon'
   },
   {
-    key: "'",
+    lowercase: "'",
     shiftKey: '"',
     code: 'Quote'
   },
   {
-    key: 'Enter',
+    lowercase: 'Enter',
     shiftKey: null,
     code: 'Enter'
   },
   {
-    key: 'Shift',
+    lowercase: 'Shift',
     shiftKey: null,
-    code: 'LeftShift'
+    code: 'ShiftLeft'
   },
   {
-    key: 'z',
+    lowercase: 'z',
     shiftKey: 'Z',
-    code: 'LetterZ'
+    code: 'KeyZ'
   },
   {
-    key: 'x',
+    lowercase: 'x',
     shiftKey: 'X',
-    code: 'LetterX'
+    code: 'KeyX'
   },
   {
-    key: 'c',
+    lowercase: 'c',
     shiftKey: 'C',
-    code: 'LetterC'
+    code: 'KeyC'
   },
   {
-    key: 'v',
+    lowercase: 'v',
     shiftKey: 'V',
-    code: 'LetterV'
+    code: 'KeyV'
   },
   {
-    key: 'b',
+    lowercase: 'b',
     shiftKey: 'B',
-    code: 'LetterB'
+    code: 'KeyB'
   },
   {
-    key: 'n',
+    lowercase: 'n',
     shiftKey: 'N',
-    code: 'LetterN'
+    code: 'KeyN'
   },
   {
-    key: 'm',
+    lowercase: 'm',
     shiftKey: 'M',
-    code: 'LetterM'
+    code: 'KeyM'
   },
   {
-    key: ',',
+    lowercase: ',',
     shiftKey: '<',
     code: 'Comma'
   },
   {
-    key: '.',
+    lowercase: '.',
     shiftKey: '>',
     code: 'Period'
   },
   {
-    key: '/',
+    lowercase: '/',
     shiftKey: '?',
-    code: 'ForwardSlash'
+    code: 'Slash'
   },
   {
-    key: '&uarr;',
+    lowercase: '&uarr;',
     shiftKey: null,
     code: 'ArrowUp'
   },
   {
-    key: 'Shift',
+    lowercase: 'Shift',
     shiftKey: null,
-    code: 'RightShift'
+    code: 'ShiftRight'
   },
   {
-    key: 'Ctrl',
+    lowercase: 'Ctrl',
     shiftKey: null,
-    code: 'LeftCtrl'
+    code: 'ControlLeft'
   },
   {
-    key: 'Win',
+    lowercase: 'Win',
     shiftKey: null,
     code: 'Win'
   },
   {
-    key: 'Alt',
+    lowercase: 'Alt',
     shiftKey: null,
-    code: 'LeftAlt'
+    code: 'AltLeft'
   },
   {
-    key: ' ',
+    lowercase: ' ',
     shiftKey: null,
     code: 'Space'
   },
   {
-    key: 'Alt',
+    lowercase: 'Alt',
     shiftKey: null,
-    code: 'RightAlt'
+    code: 'AltRight'
   },
   {
-    key: 'Ctrl',
-    shiftKey: null,
-    code: 'RightCtrl'
-  },
-  {
-    key: '&larr;',
+    lowercase: '&larr;',
     shiftKey: null,
     code: 'ArrowLeft'
   },
   {
-    key: '&darr;',
+    lowercase: '&darr;',
     shiftKey: null,
     code: 'ArrowDown'
   },
   {
-    key: '&rarr;',
+    lowercase: '&rarr;',
     shiftKey: null,
     code: 'ArrowRight'
+  },
+  {
+    lowercase: 'Ctrl',
+    shiftKey: null,
+    code: 'ControlRight'
   },
 ];
 
 const ru = [
   {
-    key: 'ё',
+    lowercase: 'ё',
     shiftKey: 'Ё',
     code: 'Backquote'
   },
   {
-    key: '1',
+    lowercase: '1',
     shiftKey: '!',
     code: 'Digit1'
   },
   {
-    key: '2',
+    lowercase: '2',
     shiftKey: '"',
     code: 'Digit2'
   },
   {
-    key: '3',
+    lowercase: '3',
     shiftKey: '№',
     code: 'Digit3'
   },
   {
-    key: '4',
+    lowercase: '4',
     shiftKey: ';',
     code: 'Digit4'
   },
   {
-    key: '5',
+    lowercase: '5',
     shiftKey: '%',
     code: 'Digit5'
   },
   {
-    key: '6',
+    lowercase: '6',
     shiftKey: ':',
     code: 'Digit6'
   },
   {
-    key: '7',
+    lowercase: '7',
     shiftKey: '?',
     code: 'Digit7'
   },
   {
-    key: '8',
+    lowercase: '8',
     shiftKey: '*',
     code: 'Digit8'
   },
   {
-    key: '9',
+    lowercase: '9',
     shiftKey: '(',
     code: 'Digit9'
   },
   {
-    key: '0',
+    lowercase: '0',
     shiftKey: ')',
     code: 'Digit0'
   },
   {
-    key: '-',
+    lowercase: '-',
     shiftKey: '_',
     code: 'Minus'
   },
   {
-    key: '=',
+    lowercase: '=',
     shiftKey: '+',
     code: 'Equal'
   },
   {
-    key: 'Backspace',
+    lowercase: 'Backspace',
     shiftKey: null,
     code: 'Backspace'
   },
   {
-    key: 'Tab',
+    lowercase: 'Tab',
     shiftKey: null,
     code: 'Tab'
   },
   {
-    key: 'й',
+    lowercase: 'й',
     shiftKey: 'Й',
-    code: 'LetterQ'
+    code: 'KeyQ'
   },
   {
-    key: 'ц',
+    lowercase: 'ц',
     shiftKey: 'Ц',
-    code: 'LetterW'
+    code: 'KeyW'
   },
   {
-    key: 'у',
+    lowercase: 'у',
     shiftKey: 'У',
-    code: 'LetterE'
+    code: 'KeyE'
   },
   {
-    key: 'к',
+    lowercase: 'к',
     shiftKey: 'К',
-    code: 'LetterR'
+    code: 'KeyR'
   },
   {
-    key: 'е',
+    lowercase: 'е',
     shiftKey: 'Е',
-    code: 'LetterT'
+    code: 'KeyT'
   },
   {
-    key: 'н',
+    lowercase: 'н',
     shiftKey: 'Н',
-    code: 'LetterY'
+    code: 'KeyY'
   },
   {
-    key: 'г',
+    lowercase: 'г',
     shiftKey: 'Г',
-    code: 'LetterU'
+    code: 'KeyU'
   },
   {
-    key: 'ш',
+    lowercase: 'ш',
     shiftKey: 'Ш',
-    code: 'LetterI'
+    code: 'KeyI'
   },
   {
-    key: 'щ',
+    lowercase: 'щ',
     shiftKey: 'Щ',
-    code: 'LetterO'
+    code: 'KeyO'
   },
   {
-    key: 'з',
+    lowercase: 'з',
     shiftKey: 'З',
-    code: 'LetterP'
+    code: 'KeyP'
   },
   {
-    key: 'х',
+    lowercase: 'х',
     shiftKey: 'Х',
-    code: 'OpenBracket'
+    code: 'BracketLeft'
   },
   {
-    key: 'ъ',
+    lowercase: 'ъ',
     shiftKey: 'Ъ',
-    code: 'CloseBracket'
+    code: 'BracketRight'
   },
   {
-    key: '\\',
+    lowercase: '\\',
     shiftKey: '/',
     code: 'Backslash'
   },
   {
-    key: 'Del',
+    lowercase: 'Del',
     shiftKey: null,
     code: 'Delete'
   },
   {
-    key: 'Caps Lock',
+    lowercase: 'Caps Lock',
     shiftKey: null,
     code: 'CapsLock'
   },
   {
-    key: 'ф',
+    lowercase: 'ф',
     shiftKey: 'Ф',
-    code: 'LetterA'
+    code: 'KeyA'
   },
   {
-    key: 'ы',
+    lowercase: 'ы',
     shiftKey: 'Ы',
-    code: 'LetterS'
+    code: 'KeyS'
   },
   {
-    key: 'в',
+    lowercase: 'в',
     shiftKey: 'В',
-    code: 'LetterD'
+    code: 'KeyD'
   },
   {
-    key: 'а',
+    lowercase: 'а',
     shiftKey: 'А',
-    code: 'LetterF'
+    code: 'KeyF'
   },
   {
-    key: 'п',
+    lowercase: 'п',
     shiftKey: 'П',
-    code: 'LetterG'
+    code: 'KeyG'
   },
   {
-    key: 'р',
+    lowercase: 'р',
     shiftKey: 'Р',
-    code: 'LetterH'
+    code: 'KeyH'
   },
   {
-    key: 'о',
+    lowercase: 'о',
     shiftKey: 'О',
-    code: 'LetterJ'
+    code: 'KeyJ'
   },
   {
-    key: 'л',
+    lowercase: 'л',
     shiftKey: 'Л',
-    code: 'LetterK'
+    code: 'KeyK'
   },
   {
-    key: 'д',
+    lowercase: 'д',
     shiftKey: 'Д',
-    code: 'LetterL'
+    code: 'KeyL'
   },
   {
-    key: 'ж',
+    lowercase: 'ж',
     shiftKey: 'Ж',
     code: 'Semicolon'
   },
   {
-    key: "э",
+    lowercase: "э",
     shiftKey: 'Э',
     code: 'Quote'
   },
   {
-    key: 'Enter',
+    lowercase: 'Enter',
     shiftKey: null,
     code: 'Enter'
   },
   {
-    key: 'Shift',
+    lowercase: 'Shift',
     shiftKey: null,
-    code: 'LeftShift'
+    code: 'ShiftLeft'
   },
   {
-    key: 'я',
+    lowercase: 'я',
     shiftKey: 'Я',
-    code: 'LetterZ'
+    code: 'KeyZ'
   },
   {
-    key: 'ч',
+    lowercase: 'ч',
     shiftKey: 'Ч',
-    code: 'LetterX'
+    code: 'KeyX'
   },
   {
-    key: 'с',
+    lowercase: 'с',
     shiftKey: 'С',
-    code: 'LetterC'
+    code: 'KeyC'
   },
   {
-    key: 'м',
+    lowercase: 'м',
     shiftKey: 'М',
-    code: 'LetterV'
+    code: 'KeyV'
   },
   {
-    key: 'и',
+    lowercase: 'и',
     shiftKey: 'И',
-    code: 'LetterB'
+    code: 'KeyB'
   },
   {
-    key: 'т',
+    lowercase: 'т',
     shiftKey: 'Т',
-    code: 'LetterN'
+    code: 'KeyN'
   },
   {
-    key: 'ь',
+    lowercase: 'ь',
     shiftKey: 'Ь',
-    code: 'LetterM'
+    code: 'KeyM'
   },
   {
-    key: 'б',
+    lowercase: 'б',
     shiftKey: 'Б',
     code: 'Comma'
   },
   {
-    key: 'ю',
+    lowercase: 'ю',
     shiftKey: 'Ю',
     code: 'Period'
   },
   {
-    key: '.',
+    lowercase: '.',
     shiftKey: ',',
-    code: 'ForwardSlash'
+    code: 'Slash'
   },
   {
-    key: '&uarr;',
+    lowercase: '&uarr;',
     shiftKey: null,
     code: 'ArrowUp'
   },
   {
-    key: 'Shift',
+    lowercase: 'Shift',
     shiftKey: null,
-    code: 'RightShift'
+    code: 'ShiftRight'
   },
   {
-    key: 'Ctrl',
+    lowercase: 'Ctrl',
     shiftKey: null,
-    code: 'LeftCtrl'
+    code: 'ControlLeft'
   },
   {
-    key: 'Win',
+    lowercase: 'Win',
     shiftKey: null,
     code: 'Win'
   },
   {
-    key: 'Alt',
+    lowercase: 'Alt',
     shiftKey: null,
-    code: 'LeftAlt'
+    code: 'AltLeft'
   },
   {
-    key: ' ',
+    lowercase: ' ',
     shiftKey: null,
     code: 'Space'
   },
   {
-    key: 'Alt',
+    lowercase: 'Alt',
     shiftKey: null,
-    code: 'RightAlt'
+    code: 'AltRight'
   },
   {
-    key: 'Ctrl',
-    shiftKey: null,
-    code: 'RightCtrl'
-  },
-  {
-    key: '&larr;',
+    lowercase: '&larr;',
     shiftKey: null,
     code: 'ArrowLeft'
   },
   {
-    key: '&darr;',
+    lowercase: '&darr;',
     shiftKey: null,
     code: 'ArrowDown'
   },
   {
-    key: '&rarr;',
+    lowercase: '&rarr;',
     shiftKey: null,
     code: 'ArrowRight'
   },
+  {
+    lowercase: 'Ctrl',
+    shiftKey: null,
+    code: 'ControlRight'
+  },
 ];
 
-export { en, ru };
+export default { en, ru };
