@@ -55,11 +55,18 @@ main {
   transition: 0.1s ease;
 }
 
-.keyboard-key:active {
+.active,
+.caps-active {
   transform: translateY(2px);
   transition: all 0.1s ease-in-out;
   box-shadow: 0px 2px 0px rgb(0 0 0 / 20%);
+  outline: 1px solid #FDF800;
+  transition: 0.1s ease;
   cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 
 .keyboard-key-wide {
