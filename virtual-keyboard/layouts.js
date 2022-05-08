@@ -282,7 +282,7 @@ const en = [
   {
     lowercase: 'Win',
     shiftKey: null,
-    code: 'Win'
+    code: 'MetaLeft'
   },
   {
     lowercase: 'Alt',
@@ -605,7 +605,7 @@ const ru = [
   {
     lowercase: 'Win',
     shiftKey: null,
-    code: 'Win'
+    code: 'MetaLeft'
   },
   {
     lowercase: 'Alt',
