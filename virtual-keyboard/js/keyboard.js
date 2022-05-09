@@ -257,6 +257,14 @@ export default class Keyboard {
           case 'ArrowRight':
             position += 1;
             break;
+          case 'ArrowUp':
+            const up = this.output.value.slice(0, position).match(/(\n).*$(?!\1)/g);
+            position -= up[0].length;
+            break;
+          case 'ArrowDown':
+            const down = this.output.value.slice(position).match(/^.*(\n).*(?!\1)/);
+            position += down[0].length;
+            break;
           case 'Delete':
             this.output.value = positionFromLeft + positionFromRight.slice(1);
             break;
@@ -387,6 +395,14 @@ export default class Keyboard {
             break;
           case 'ArrowRight':
             position += 1;
+            break;
+          case 'ArrowUp':
+            const up = this.output.value.slice(0, position).match(/(\n).*$(?!\1)/g);
+            position -= up[0].length;
+            break;
+          case 'ArrowDown':
+            const down = this.output.value.slice(position).match(/^.*(\n).*(?!\1)/);
+            position += down[0].length;
             break;
           case 'Delete':
             this.output.value = positionFromLeft + positionFromRight.slice(1);
