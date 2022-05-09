@@ -10,6 +10,19 @@ main {
   width: 900px;
 }
 
+.header {
+  text-align: center;
+}
+
+.info {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.info code {
+  color: #07C5B5;
+}
+
 .output {
   margin-bottom: 20px;
   width: 99.3%;

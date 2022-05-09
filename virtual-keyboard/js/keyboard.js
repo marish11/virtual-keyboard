@@ -20,13 +20,26 @@ export default class Keyboard {
   init(langID) {
     this.language = language[langID];
     this.main = document.createElement('main');
+    this.header = document.createElement('h1');
+    this.header.classList.add('header');
+    this.header.innerHTML = 'Virtual Keyboard';
     this.output = document.createElement('textarea');
     this.keysContainer = document.createElement('div');
     this.keysContainer.classList.add('keyboard');
     this.output.classList.add('output');
     this.keysContainer.appendChild(this.createLayout());
+    this.info = document.createElement('div');
+    this.info.classList.add('info');
+    this.OS = document.createElement('p');
+    this.hotKeys = document.createElement('p');
+    this.OS.innerHTML = 'This keyboard was created in Windows';
+    this.hotKeys.innerHTML = 'Press left <code>Alt + Ctrl</code> to change language';
+    this.info.appendChild(this.OS);
+    this.info.appendChild(this.hotKeys);
+    this.main.appendChild(this.header);
     this.main.appendChild(this.output);
     this.main.appendChild(this.keysContainer);
+    this.main.appendChild(this.info);
     document.body.prepend(this.main);
 
     return this;
