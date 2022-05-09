@@ -12,6 +12,9 @@ export default class Keyboard {
   constructor() {
     this.keyLayout = keyLayout;
     this.keyElements = [];
+    this.isCapsLock = false;
+    this.shiftPressed = false;
+    this.altPressed = false;
   }
 
   init(langID) {
@@ -113,6 +116,9 @@ export default class Keyboard {
     document.addEventListener('keydown', this.handle);
     document.addEventListener('keyup', this.handle);
 
+    this.keysContainer.addEventListener('mousedown', this.handleMouse);
+    this.keysContainer.addEventListener('mouseup', this.handleMouse);
+
     return fragment;
   }
 
@@ -123,22 +129,36 @@ export default class Keyboard {
     this.output.focus();
 
     if (event.type === 'keydown') {
-      if (event.getModifierState('CapsLock')) this.toggleUpperCase();
-      else if (event.getModifierState('CapsLock') && event.code === 'CapsLock') this.toggleLowerCase();
+      if (event.code === 'AltLeft') this.altPressed = true;
+      if (event.code === 'ControlLeft' && this.altPressed) this.changeLanguage();
 
-      if (event.shiftKey && !event.getModifierState('CapsLock')) {
+      if (key.dataset.code === 'CapsLock' && !this.isCapsLock) {
+        this.isCapsLock = true;
+        this.toggleUpperCase();
+        key.classList.add('caps-active');
+      } else if (this.isCapsLock && key.dataset.code === 'CapsLock') {
+        this.isCapsLock = false;
+        this.toggleLowerCase();
+        key.classList.remove('caps-active');
+      }
+
+      if (event.shiftKey && !this.isCapsLock) {
+        this.shiftPressed = true;
         this.toggleUpperCase();
         this.toggleShiftKey();
-      } else if (event.shiftKey && event.getModifierState('CapsLock')) {
+      } else if (event.shiftKey && this.isCapsLock) {
+        this.shiftPressed = true;
         this.toggleLowerCase();
         this.toggleShiftKey();
       }
     }
 
-    if (event.type === 'keyup' && !event.shiftKey && !event.getModifierState('CapsLock')) {
+    if (event.type === 'keyup' && !event.shiftKey && !this.isCapsLock) {
+      this.shiftPressed = false;
       this.toggleLowerCase();
       this.removeShiftKey();
-    } else if (event.type === 'keyup' && !event.shiftKey && event.getModifierState('CapsLock')) {
+    } else if (event.type === 'keyup' && !event.shiftKey && this.isCapsLock) {
+      this.shiftPressed = false;
       this.toggleUpperCase();
       this.removeShiftKey();
     }
@@ -152,12 +172,9 @@ export default class Keyboard {
         if (event.type === 'keydown') {
           key.classList.add('active');
 
-          if (event.getModifierState('CapsLock') && event.code === 'CapsLock') key.classList.add('caps-active');
-          else key.classList.remove('caps-active');
-
           if (event.code.match(/Caps|Alt|Control|Shift|MetaLeft|Backspace|Space|Tab|Arrow|Enter|Del/)) return;
 
-          if (event.getModifierState('CapsLock') && !event.shiftKey) {
+          if (this.isCapsLock && !this.shiftPressed) {
             if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit/)) {
               position += 1;
               this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
@@ -167,10 +184,10 @@ export default class Keyboard {
             }
           }
 
-          if (event.shiftKey && !event.getModifierState('CapsLock')) {
+          if (this.shiftPressed && !this.isCapsLock) {
             position += 1;
             this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
-          } else if (event.shiftKey && event.getModifierState('CapsLock')) {
+          } else if (this.shiftPressed && this.isCapsLock) {
             if (key.dataset.func === 'false' && key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
               position += 1;
               this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
@@ -180,7 +197,7 @@ export default class Keyboard {
             }
           }
 
-          if (!event.getModifierState('CapsLock') && !event.shiftKey) {
+          if (!this.isCapsLock && !this.shiftPressed) {
             position += 1;
             this.output.value = positionFromLeft + el.lowercase + positionFromRight;;
           }
@@ -218,6 +235,135 @@ export default class Keyboard {
         this.output.setSelectionRange(position, position);
       }
     })
+  }
+
+  handleMouse = (event) => {
+    event.stopPropagation();
+    const key = event.target.closest('.keyboard-key');
+    if (!key) return;
+
+    if (event.type === 'mousedown') {
+      if (key.dataset.code === 'CapsLock' && !this.isCapsLock) {
+        this.isCapsLock = true;
+        this.toggleUpperCase();
+        key.classList.add('caps-active');
+      } else if (this.isCapsLock && key.dataset.code === 'CapsLock') {
+        this.isCapsLock = false;
+        this.toggleLowerCase();
+        key.classList.remove('caps-active');
+      }
+
+      if (key.dataset.code.match(/Shift/) && !this.isCapsLock) {
+        this.shiftPressed = true;
+        this.toggleUpperCase();
+        this.toggleShiftKey();
+      } else if (key.dataset.code.match(/Shift/) && this.isCapsLock) {
+        this.shiftPressed = true;
+        this.toggleLowerCase();
+        this.toggleShiftKey();
+      }
+    }
+
+    if (event.type === 'mouseup' && this.shiftPressed && !this.isCapsLock) {
+      this.shiftPressed = false;
+      this.toggleLowerCase();
+      this.removeShiftKey();
+    } else if (event.type === 'mouseup' && this.shiftPressed && this.isCapsLock) {
+      this.shiftPressed = false;
+      this.toggleUpperCase();
+      this.removeShiftKey();
+    }
+
+    this.language.forEach(el => {
+      if (el.code === key.dataset.code) {
+        let position = this.output.selectionStart;
+        const positionFromLeft = this.output.value.slice(0, position);
+        const positionFromRight = this.output.value.slice(position);
+
+        if (event.type === 'mousedown') {
+          key.classList.add('active');
+
+          if (key.dataset.code.match(/Caps|Alt|Control|Shift|MetaLeft|Backspace|Space|Tab|Arrow|Enter|Del/)) return;
+
+          if (this.isCapsLock && !this.shiftPressed) {
+            if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit/)) {
+              position += 1;
+              this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+            } else if (key.dataset.func === 'false' && key.dataset.code.match(/Digit/)) {
+              position += 1;
+              this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+            }
+          }
+
+          if (this.shiftPressed && !this.isCapsLock) {
+            position += 1;
+            this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+          } else if (this.shiftPressed && this.isCapsLock) {
+            if (key.dataset.func === 'false' && key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
+              position += 1;
+              this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+            } else if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
+              position += 1;
+              this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+            }
+          }
+
+          if (!this.isCapsLock && !this.shiftPressed) {
+            position += 1;
+            this.output.value = positionFromLeft + el.lowercase + positionFromRight;;
+          }
+        } else if (event.type === 'mouseup') {
+          key.classList.remove('active');
+        }
+
+        switch (key.dataset.code) {
+          case 'Tab':
+            position += 1;
+            this.output.value = positionFromLeft + '\t' + positionFromRight;
+            break;
+          case 'Enter':
+            position += 1;
+            this.output.value = positionFromLeft + '\n' + positionFromRight;
+            break;
+          case 'Space':
+            position += 1;
+            this.output.value = positionFromLeft + ' ' + positionFromRight;
+            break;
+          case 'ArrowLeft':
+            position = position - 1 >= 0 ? position - 1 : 0;
+            break;
+          case 'ArrowRight':
+            position += 1;
+            break;
+          case 'Delete':
+            this.output.value = positionFromLeft + positionFromRight.slice(1);
+            break;
+          case 'Backspace':
+            this.output.value = positionFromLeft.slice(0, -1) + positionFromRight;
+            break;
+        }
+
+        this.output.setSelectionRange(position, position);
+      }
+    })
+  }
+
+  changeLanguage() {
+    const langID = Object.keys(language);
+    let index = langID.indexOf(this.keysContainer.dataset.language);
+    this.language = index + 1 < langID.length ? language[langID[index += 1]] : language[langID[index -= index]];
+
+    this.keysContainer.dataset.language = langID[index];
+    this.setToLocalStorage('lang', langID[index]);
+
+    this.keyElements.forEach((keyEl) => {
+      const key = this.language.find((key) => key.code === keyEl.dataset.code);
+      if (!key) return;
+      keyEl.firstElementChild.innerHTML = key.shiftKey;
+      keyEl.lastElementChild.innerHTML = key.lowercase;
+    });
+
+    if (this.isCapsLock) this.toggleUpperCase();
   }
 
   toggleUpperCase() {
@@ -258,5 +404,13 @@ export default class Keyboard {
         char.classList.remove('hidden');
       }
     })
+  }
+
+  setToLocalStorage(name, value) {
+    window.localStorage.setItem(name, value);
+  }
+  
+  getFromLocalStorage(name, value = null) {
+    return window.localStorage.getItem(name) || value;
   }
 }
