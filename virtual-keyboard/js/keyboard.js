@@ -196,7 +196,7 @@ export default class Keyboard {
                 position += 1;
                 this.output.value = positionFromLeft + el.lowercase + positionFromRight;
               }
-            } else if (this.getFromLocalStorage('lang') === 'en') {
+            } else {
               if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
                 position += 1;
                 this.output.value = positionFromLeft + el.lowercase + positionFromRight;
@@ -219,7 +219,7 @@ export default class Keyboard {
                 position += 1;
                 this.output.value = positionFromLeft + el.lowercase + positionFromRight;
               }
-            } else if (this.getFromLocalStorage('lang') === 'en') {
+            } else {
               if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
                 position += 1;
                 this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
@@ -336,7 +336,7 @@ export default class Keyboard {
                 position += 1;
                 this.output.value = positionFromLeft + el.lowercase + positionFromRight;
               }
-            } else if (this.getFromLocalStorage('lang') === 'en') {
+            } else {
               if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
                 position += 1;
                 this.output.value = positionFromLeft + el.lowercase + positionFromRight;
@@ -359,7 +359,7 @@ export default class Keyboard {
                 position += 1;
                 this.output.value = positionFromLeft + el.lowercase + positionFromRight;
               }
-            } else if (this.getFromLocalStorage('lang') === 'en') {
+            } else {
               if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
                 position += 1;
                 this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
@@ -464,7 +464,7 @@ export default class Keyboard {
           shiftChar.classList.remove('hidden');
           char.classList.add('hidden');
         }
-      } else if (this.getFromLocalStorage('lang') === 'en') {
+      } else {
         if (keyEl.dataset.func === 'false' && !keyEl.dataset.code.match(/Key/)) {
           shiftChar.classList.remove('hidden');
           char.classList.add('hidden');
@@ -482,7 +482,7 @@ export default class Keyboard {
           shiftChar.classList.add('hidden');
           char.classList.remove('hidden');
         }
-      } else if (this.getFromLocalStorage('lang') === 'en') {
+      } else {
         if (keyEl.dataset.func === 'false' && !keyEl.dataset.code.match(/Key/)) {
           shiftChar.classList.add('hidden');
           char.classList.remove('hidden');
