@@ -188,12 +188,22 @@ export default class Keyboard {
           if (event.code.match(/Caps|Alt|Control|Shift|MetaLeft|Backspace|Space|Tab|Arrow|Enter|Del/)) return;
 
           if (this.isCapsLock && !this.shiftPressed) {
-            if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit/)) {
-              position += 1;
-              this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
-            } else if (key.dataset.func === 'false' && key.dataset.code.match(/Digit/)) {
-              position += 1;
-              this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+            if (this.getFromLocalStorage('lang') === 'ru') {
+              if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit|Backslash|Slash|Minus|Equal/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+              } else if (key.dataset.func === 'false' && key.dataset.code.match(/Digit|Backslash|Slash|Minus|Equal/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+              }
+            } else if (this.getFromLocalStorage('lang') === 'en') {
+              if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+              } else if (key.dataset.func === 'false' && key.dataset.code.match(/Key/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+              }
             }
           }
 
@@ -201,18 +211,28 @@ export default class Keyboard {
             position += 1;
             this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
           } else if (this.shiftPressed && this.isCapsLock) {
-            if (key.dataset.func === 'false' && key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
-              position += 1;
-              this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
-            } else if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
-              position += 1;
-              this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+            if (this.getFromLocalStorage('lang') === 'ru') {
+              if (key.dataset.func === 'false' && key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+              } else if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+              }
+            } else if (this.getFromLocalStorage('lang') === 'en') {
+              if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+              } else if (key.dataset.func === 'false' && key.dataset.code.match(/Key/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+              }
             }
           }
 
           if (!this.isCapsLock && !this.shiftPressed) {
             position += 1;
-            this.output.value = positionFromLeft + el.lowercase + positionFromRight;;
+            this.output.value = positionFromLeft + el.lowercase + positionFromRight;
           }
         } else if (event.type === 'keyup') {
           key.classList.remove('active');
@@ -299,12 +319,22 @@ export default class Keyboard {
           if (key.dataset.code.match(/Caps|Alt|Control|Shift|MetaLeft|Backspace|Space|Tab|Arrow|Enter|Del/)) return;
 
           if (this.isCapsLock && !this.shiftPressed) {
-            if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit/)) {
-              position += 1;
-              this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
-            } else if (key.dataset.func === 'false' && key.dataset.code.match(/Digit/)) {
-              position += 1;
-              this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+            if (this.getFromLocalStorage('lang') === 'ru') {
+              if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit|Backslash|Slash|Minus|Equal/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+              } else if (key.dataset.func === 'false' && key.dataset.code.match(/Digit|Backslash|Slash|Minus|Equal/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+              }
+            } else if (this.getFromLocalStorage('lang') === 'en') {
+              if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+              } else if (key.dataset.func === 'false' && key.dataset.code.match(/Key/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+              }
             }
           }
 
@@ -312,18 +342,28 @@ export default class Keyboard {
             position += 1;
             this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
           } else if (this.shiftPressed && this.isCapsLock) {
-            if (key.dataset.func === 'false' && key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
-              position += 1;
-              this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
-            } else if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
-              position += 1;
-              this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+            if (this.getFromLocalStorage('lang') === 'ru') {
+              if (key.dataset.func === 'false' && key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+              } else if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+              }
+            } else if (this.getFromLocalStorage('lang') === 'en') {
+              if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+              } else if (key.dataset.func === 'false' && key.dataset.code.match(/Key/)) {
+                position += 1;
+                this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+              }
             }
           }
 
           if (!this.isCapsLock && !this.shiftPressed) {
             position += 1;
-            this.output.value = positionFromLeft + el.lowercase + positionFromRight;;
+            this.output.value = positionFromLeft + el.lowercase + positionFromRight;
           }
         } else if (event.type === 'mouseup') {
           key.classList.remove('active');
@@ -401,9 +441,16 @@ export default class Keyboard {
     this.keyElements.forEach(keyEl => {
       const shiftChar = keyEl.firstElementChild;
       const char = keyEl.lastElementChild;
-      if (keyEl.dataset.func === 'false' && keyEl.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
-        shiftChar.classList.remove('hidden');
-        char.classList.add('hidden');
+      if (this.getFromLocalStorage('lang') === 'ru') {
+        if (keyEl.dataset.func === 'false' && keyEl.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
+          shiftChar.classList.remove('hidden');
+          char.classList.add('hidden');
+        }
+      } else if (this.getFromLocalStorage('lang') === 'en') {
+        if (keyEl.dataset.func === 'false' && !keyEl.dataset.code.match(/Key/)) {
+          shiftChar.classList.remove('hidden');
+          char.classList.add('hidden');
+        }
       }
     })
   }
@@ -412,9 +459,16 @@ export default class Keyboard {
     this.keyElements.forEach(keyEl => {
       const shiftChar = keyEl.firstElementChild;
       const char = keyEl.lastElementChild;
-      if (keyEl.dataset.func === 'false' && keyEl.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
-        shiftChar.classList.add('hidden');
-        char.classList.remove('hidden');
+      if (this.getFromLocalStorage('lang') === 'ru') {
+        if (keyEl.dataset.func === 'false' && keyEl.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
+          shiftChar.classList.add('hidden');
+          char.classList.remove('hidden');
+        }
+      } else if (this.getFromLocalStorage('lang') === 'en') {
+        if (keyEl.dataset.func === 'false' && !keyEl.dataset.code.match(/Key/)) {
+          shiftChar.classList.add('hidden');
+          char.classList.remove('hidden');
+        }
       }
     })
   }
