@@ -145,37 +145,77 @@ export default class Keyboard {
 
     this.language.forEach(el => {
       if (el.code === event.code) {
+        let position = this.output.selectionStart;
+        const positionFromLeft = this.output.value.slice(0, position);
+        const positionFromRight = this.output.value.slice(position);
+
         if (event.type === 'keydown') {
           key.classList.add('active');
 
           if (event.getModifierState('CapsLock') && event.code === 'CapsLock') key.classList.add('caps-active');
           else key.classList.remove('caps-active');
 
-          if (event.code.match(/Caps|Alt|Control|Shift|MetaLeft|Backspace|Space|Tab/)) return;
+          if (event.code.match(/Caps|Alt|Control|Shift|MetaLeft|Backspace|Space|Tab|Arrow|Enter|Del/)) return;
 
           if (event.getModifierState('CapsLock') && !event.shiftKey) {
             if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit/)) {
-              this.output.value += el.shiftKey;
+              position += 1;
+              this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
             } else if (key.dataset.func === 'false' && key.dataset.code.match(/Digit/)) {
-              this.output.value += el.lowercase;
+              position += 1;
+              this.output.value = positionFromLeft + el.lowercase + positionFromRight;
             }
           }
 
           if (event.shiftKey && !event.getModifierState('CapsLock')) {
-            this.output.value += el.shiftKey;
+            position += 1;
+            this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
           } else if (event.shiftKey && event.getModifierState('CapsLock')) {
             if (key.dataset.func === 'false' && key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
-              this.output.value += el.shiftKey;
+              position += 1;
+              this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
             } else if (key.dataset.func === 'false' && !key.dataset.code.match(/Digit|Minus|Equal|Backslash|Slash/)) {
-              this.output.value += el.lowercase;
+              position += 1;
+              this.output.value = positionFromLeft + el.lowercase + positionFromRight;
             }
           }
 
-          if (!event.getModifierState('CapsLock') && !event.shiftKey) this.output.value += el.lowercase;
-
+          if (!event.getModifierState('CapsLock') && !event.shiftKey) {
+            position += 1;
+            this.output.value = positionFromLeft + el.lowercase + positionFromRight;;
+          }
         } else if (event.type === 'keyup') {
           key.classList.remove('active');
         }
+
+        switch (event.code) {
+          case 'Tab':
+            position += 1;
+            this.output.value = positionFromLeft + '\t' + positionFromRight;
+            break;
+          case 'Enter':
+            position += 1;
+            this.output.value = positionFromLeft + '\n' + positionFromRight;
+            break;
+          case 'Space':
+            position += 1;
+            this.output.value = positionFromLeft + ' ' + positionFromRight;
+            break;
+          case 'ArrowLeft':
+            position = position - 1 >= 0 ? position - 1 : 0;
+            break;
+          case 'ArrowRight':
+            position += 1;
+            break;
+          case 'Delete':
+            this.output.value = positionFromLeft + positionFromRight.slice(1);
+            break;
+          case 'Backspace':
+            this.output.value = positionFromLeft.slice(0, -1) + positionFromRight;
+            break;
+        }
+
+        this.output.setSelectionRange(position, position);
       }
     })
   }
