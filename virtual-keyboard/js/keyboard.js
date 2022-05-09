@@ -58,7 +58,7 @@ export default class Keyboard {
     char.innerHTML = lowercase;
 
     if (code) keyElement.dataset.code = code;
-    if (Boolean(code.match(/Backspace|Tab|Del|Caps|Enter|Shift|Control|Alt|Meta|Arrow/))) {
+    if (code.match(/Backspace|Tab|Del|Caps|Enter|Shift|Control|Alt|Meta|Arrow/)) {
       keyElement.dataset.func = 'true';
     } else {
       keyElement.dataset.func = 'false';
@@ -238,6 +238,9 @@ export default class Keyboard {
           key.classList.remove('active');
         }
 
+        const up = this.output.value.slice(0, position).match(/(\n).*$(?!\1)/g) || [[1]];
+        const down = this.output.value.slice(position).match(/^.*(\n).*(?!\1)/) || [[1]];
+
         switch (event.code) {
           case 'Tab':
             position += 1;
@@ -258,11 +261,9 @@ export default class Keyboard {
             position += 1;
             break;
           case 'ArrowUp':
-            const up = this.output.value.slice(0, position).match(/(\n).*$(?!\1)/g);
             position -= up[0].length;
             break;
           case 'ArrowDown':
-            const down = this.output.value.slice(position).match(/^.*(\n).*(?!\1)/);
             position += down[0].length;
             break;
           case 'Delete':
@@ -377,6 +378,9 @@ export default class Keyboard {
           key.classList.remove('active');
         }
 
+        const up = this.output.value.slice(0, position).match(/(\n).*$(?!\1)/g) || [[1]];
+        const down = this.output.value.slice(position).match(/^.*(\n).*(?!\1)/) || [[1]];
+
         switch (key.dataset.code) {
           case 'Tab':
             position += 1;
@@ -397,11 +401,9 @@ export default class Keyboard {
             position += 1;
             break;
           case 'ArrowUp':
-            const up = this.output.value.slice(0, position).match(/(\n).*$(?!\1)/g);
             position -= up[0].length;
             break;
           case 'ArrowDown':
-            const down = this.output.value.slice(position).match(/^.*(\n).*(?!\1)/);
             position += down[0].length;
             break;
           case 'Delete':
