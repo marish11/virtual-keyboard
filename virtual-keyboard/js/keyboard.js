@@ -281,8 +281,10 @@ export default class Keyboard {
 
   handleMouse = (event) => {
     event.stopPropagation();
+    event.preventDefault();
     const key = event.target.closest('.keyboard-key');
     if (!key) return;
+    this.output.focus();
 
     if (event.type === 'mousedown') {
       if (key.dataset.code === 'CapsLock' && !this.isCapsLock) {
