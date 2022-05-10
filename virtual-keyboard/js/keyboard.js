@@ -5,7 +5,7 @@ export const keyLayout = [
   ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete'],
   ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'],
   ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'],
-  ['ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight']
+  ['ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight'],
 ];
 
 export default class Keyboard {
@@ -86,17 +86,17 @@ export default class Keyboard {
       keyRow.setAttribute('data-row', `${i + 1}`);
       keyRow.style.gridTemplateColumns = `repeat(${row.length}, 1fr)`;
 
-      this.language.forEach(key => {
+      this.language.forEach((key) => {
         this.code = key.code;
         this.shiftKey = key.shiftKey;
         this.lowercase = key.lowercase;
 
-        row.forEach(key => {
-          if (key === this.code) {
+        row.forEach((button) => {
+          if (button === this.code) {
             const keyElement = this.createKey(this.lowercase, this.shiftKey, this.code);
             keyRow.appendChild(keyElement);
 
-            switch (key) {
+            switch (button) {
               case 'Backspace':
                 keyElement.classList.add('keyboard-key-wide');
                 break;
@@ -118,13 +118,15 @@ export default class Keyboard {
               case 'Space':
                 keyElement.classList.add('keyboard-key-space');
                 break;
+              default:
+                break;
             }
             this.keyElements.push(keyElement);
           }
-        })
-      })
+        });
+      });
       fragment.appendChild(keyRow);
-    })
+    });
 
     document.addEventListener('keydown', this.handle);
     document.addEventListener('keyup', this.handle);
@@ -137,7 +139,7 @@ export default class Keyboard {
 
   handle = (event) => {
     event.preventDefault();
-    const key = this.keyElements.find((key) => key.dataset.code === event.code);
+    const key = this.keyElements.find((button) => button.dataset.code === event.code);
     if (!key) return;
     this.output.focus();
 
@@ -176,7 +178,7 @@ export default class Keyboard {
       this.removeShiftKey();
     }
 
-    this.language.forEach(el => {
+    this.language.forEach((el) => {
       if (el.code === event.code) {
         let position = this.output.selectionStart;
         const positionFromLeft = this.output.value.slice(0, position);
@@ -196,14 +198,12 @@ export default class Keyboard {
                 position += 1;
                 this.output.value = positionFromLeft + el.lowercase + positionFromRight;
               }
-            } else {
-              if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
-                position += 1;
-                this.output.value = positionFromLeft + el.lowercase + positionFromRight;
-              } else if (key.dataset.func === 'false' && key.dataset.code.match(/Key/)) {
-                position += 1;
-                this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
-              }
+            } else if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
+              position += 1;
+              this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+            } else if (key.dataset.func === 'false' && key.dataset.code.match(/Key/)) {
+              position += 1;
+              this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
             }
           }
 
@@ -219,14 +219,12 @@ export default class Keyboard {
                 position += 1;
                 this.output.value = positionFromLeft + el.lowercase + positionFromRight;
               }
-            } else {
-              if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
-                position += 1;
-                this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
-              } else if (key.dataset.func === 'false' && key.dataset.code.match(/Key/)) {
-                position += 1;
-                this.output.value = positionFromLeft + el.lowercase + positionFromRight;
-              }
+            } else if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
+              position += 1;
+              this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+            } else if (key.dataset.func === 'false' && key.dataset.code.match(/Key/)) {
+              position += 1;
+              this.output.value = positionFromLeft + el.lowercase + positionFromRight;
             }
           }
 
@@ -244,15 +242,15 @@ export default class Keyboard {
         switch (event.code) {
           case 'Tab':
             position += 1;
-            this.output.value = positionFromLeft + '\t' + positionFromRight;
+            this.output.value = `${positionFromLeft}\t${positionFromRight}`;
             break;
           case 'Enter':
             position += 1;
-            this.output.value = positionFromLeft + '\n' + positionFromRight;
+            this.output.value = `${positionFromLeft}\n${positionFromRight}`;
             break;
           case 'Space':
             position += 1;
-            this.output.value = positionFromLeft + ' ' + positionFromRight;
+            this.output.value = `${positionFromLeft} ${positionFromRight}`;
             break;
           case 'ArrowLeft':
             position = position - 1 >= 0 ? position - 1 : 0;
@@ -272,12 +270,14 @@ export default class Keyboard {
           case 'Backspace':
             this.output.value = positionFromLeft.slice(0, -1) + positionFromRight;
             break;
+          default:
+            break;
         }
 
         this.output.setSelectionRange(position, position);
       }
-    })
-  }
+    });
+  };
 
   handleMouse = (event) => {
     event.stopPropagation();
@@ -318,7 +318,7 @@ export default class Keyboard {
       this.removeShiftKey();
     }
 
-    this.language.forEach(el => {
+    this.language.forEach((el) => {
       if (el.code === key.dataset.code) {
         let position = this.output.selectionStart;
         const positionFromLeft = this.output.value.slice(0, position);
@@ -338,14 +338,12 @@ export default class Keyboard {
                 position += 1;
                 this.output.value = positionFromLeft + el.lowercase + positionFromRight;
               }
-            } else {
-              if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
-                position += 1;
-                this.output.value = positionFromLeft + el.lowercase + positionFromRight;
-              } else if (key.dataset.func === 'false' && key.dataset.code.match(/Key/)) {
-                position += 1;
-                this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
-              }
+            } else if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
+              position += 1;
+              this.output.value = positionFromLeft + el.lowercase + positionFromRight;
+            } else if (key.dataset.func === 'false' && key.dataset.code.match(/Key/)) {
+              position += 1;
+              this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
             }
           }
 
@@ -361,14 +359,12 @@ export default class Keyboard {
                 position += 1;
                 this.output.value = positionFromLeft + el.lowercase + positionFromRight;
               }
-            } else {
-              if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
-                position += 1;
-                this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
-              } else if (key.dataset.func === 'false' && key.dataset.code.match(/Key/)) {
-                position += 1;
-                this.output.value = positionFromLeft + el.lowercase + positionFromRight;
-              }
+            } else if (key.dataset.func === 'false' && !key.dataset.code.match(/Key/)) {
+              position += 1;
+              this.output.value = positionFromLeft + el.shiftKey + positionFromRight;
+            } else if (key.dataset.func === 'false' && key.dataset.code.match(/Key/)) {
+              position += 1;
+              this.output.value = positionFromLeft + el.lowercase + positionFromRight;
             }
           }
 
@@ -386,15 +382,15 @@ export default class Keyboard {
         switch (key.dataset.code) {
           case 'Tab':
             position += 1;
-            this.output.value = positionFromLeft + '\t' + positionFromRight;
+            this.output.value = `${positionFromLeft}\t${positionFromRight}`;
             break;
           case 'Enter':
             position += 1;
-            this.output.value = positionFromLeft + '\n' + positionFromRight;
+            this.output.value = `${positionFromLeft}\n${positionFromRight}`;
             break;
           case 'Space':
             position += 1;
-            this.output.value = positionFromLeft + ' ' + positionFromRight;
+            this.output.value = `${positionFromLeft} ${positionFromRight}`;
             break;
           case 'ArrowLeft':
             position = position - 1 >= 0 ? position - 1 : 0;
@@ -414,51 +410,55 @@ export default class Keyboard {
           case 'Backspace':
             this.output.value = positionFromLeft.slice(0, -1) + positionFromRight;
             break;
+          default:
+            break;
         }
 
         this.output.setSelectionRange(position, position);
       }
-    })
-  }
+    });
+  };
 
   changeLanguage() {
-    const langID = Object.keys(language);
-    let index = langID.indexOf(this.keysContainer.dataset.language);
-    this.language = index + 1 < langID.length ? language[langID[index += 1]] : language[langID[index -= index]];
+    const lang = Object.keys(language);
+    let idx = lang.indexOf(this.keysContainer.dataset.language);
+    this.language = idx + 1 < lang.length ? language[lang[idx += 1]] : language[lang[idx -= idx]];
 
-    this.keysContainer.dataset.language = langID[index];
-    this.setToLocalStorage('lang', langID[index]);
+    this.keysContainer.dataset.language = lang[idx];
+    this.setToLocalStorage('lang', lang[idx]);
 
     this.keyElements.forEach((keyEl) => {
-      const key = this.language.find((key) => key.code === keyEl.dataset.code);
+      const key = this.language.find((el) => el.code === keyEl.dataset.code);
       if (!key) return;
-      keyEl.firstElementChild.innerHTML = key.shiftKey;
-      keyEl.lastElementChild.innerHTML = key.lowercase;
+      const shift = keyEl.firstElementChild;
+      const lowercase = keyEl.lastElementChild;
+      shift.innerHTML = key.shiftKey;
+      lowercase.innerHTML = key.lowercase;
     });
 
     if (this.isCapsLock) this.toggleUpperCase();
   }
 
   toggleUpperCase() {
-    this.keyElements.forEach(keyEl => {
-      const char = keyEl.lastElementChild.innerHTML;
+    this.keyElements.forEach((keyEl) => {
+      const char = keyEl.lastElementChild;
       if (keyEl.dataset.func === 'false') {
-        keyEl.lastElementChild.innerHTML = char.toUpperCase();
+        char.innerHTML = char.innerHTML.toUpperCase();
       }
-    })
+    });
   }
 
   toggleLowerCase() {
-    this.keyElements.forEach(keyEl => {
-      const char = keyEl.lastElementChild.innerHTML;
+    this.keyElements.forEach((keyEl) => {
+      const char = keyEl.lastElementChild;
       if (keyEl.dataset.func === 'false') {
-        keyEl.lastElementChild.innerHTML = char.toLowerCase();
+        char.innerHTML = char.innerHTML.toLowerCase();
       }
-    })
+    });
   }
 
   toggleShiftKey() {
-    this.keyElements.forEach(keyEl => {
+    this.keyElements.forEach((keyEl) => {
       const shiftChar = keyEl.firstElementChild;
       const char = keyEl.lastElementChild;
       if (this.getFromLocalStorage('lang') === 'ru') {
@@ -466,17 +466,15 @@ export default class Keyboard {
           shiftChar.classList.remove('hidden');
           char.classList.add('hidden');
         }
-      } else {
-        if (keyEl.dataset.func === 'false' && !keyEl.dataset.code.match(/Key/)) {
-          shiftChar.classList.remove('hidden');
-          char.classList.add('hidden');
-        }
+      } else if (keyEl.dataset.func === 'false' && !keyEl.dataset.code.match(/Key/)) {
+        shiftChar.classList.remove('hidden');
+        char.classList.add('hidden');
       }
-    })
+    });
   }
 
   removeShiftKey() {
-    this.keyElements.forEach(keyEl => {
+    this.keyElements.forEach((keyEl) => {
       const shiftChar = keyEl.firstElementChild;
       const char = keyEl.lastElementChild;
       if (this.getFromLocalStorage('lang') === 'ru') {
@@ -484,19 +482,17 @@ export default class Keyboard {
           shiftChar.classList.add('hidden');
           char.classList.remove('hidden');
         }
-      } else {
-        if (keyEl.dataset.func === 'false' && !keyEl.dataset.code.match(/Key/)) {
-          shiftChar.classList.add('hidden');
-          char.classList.remove('hidden');
-        }
+      } else if (keyEl.dataset.func === 'false' && !keyEl.dataset.code.match(/Key/)) {
+        shiftChar.classList.add('hidden');
+        char.classList.remove('hidden');
       }
-    })
+    });
   }
 
   setToLocalStorage(name, value) {
     window.localStorage.setItem(name, value);
   }
-  
+
   getFromLocalStorage(name, value = null) {
     return window.localStorage.getItem(name) || value;
   }
