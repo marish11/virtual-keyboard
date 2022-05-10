@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #F0E8DE;
+}
+
+main {
+  margin: 30px auto;
+  width: 900px;
+}
+
+.header {
+  text-align: center;
+}
+
+.info {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.info code {
+  color: #07C5B5;
+}
+
+.output {
+  margin-bottom: 20px;
+  width: 99.3%;
+  height: calc(100vh - 700px);
+  border:solid 1px #353535;
+  resize: none;
+}
+
+.keyboard {
+  padding: 20px 10px;
+  display: grid;
+  grid-row-gap: 10px;
+  background-color: #07C5B5;
+  border-radius: 10px;
+}
+
+.keyboard-row {
+  display: grid;
+  grid-gap: 10px;
+  grid-row-gap: 10px;
+  height: 50px;
+}
+
+.keyboard-key {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #FDF6FF;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  background-color: #353535;
+  box-shadow: 0px 5px 0px rgb(0 0 0 / 20%);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.keyboard-key:hover {
+  outline: 1px solid #FDF800;
+  transition: 0.1s ease;
+}
+
+.active,
+.caps-active {
+  transform: translateY(2px);
+  transition: all 0.1s ease-in-out;
+  box-shadow: 0px 2px 0px rgb(0 0 0 / 20%);
+  outline: 1px solid #FDF800;
+  transition: 0.1s ease;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.keyboard-key-wide {
+  width: 90px;
+}
+
+.keyboard-key-shift {
+  width: 107px;
+}
+
+.keyboard-key-enter {
+  width: 115px;
+}
+
+.keyboard-key-space {
+  width: 405px;
+}
+
+.key-shift {
+  justify-content: space-around;
+}
